@@ -2,9 +2,8 @@ import React from "react";
 import Title from "./components/Title.js"
 import Form from "./components/Form.js"
 import Weather from "./components/Weather.js"
-import Google from "./components/Google.js"
 const API_KEY = "3e0e0c8dac80ba6a28f1b102567c1e71";
-const GOOGLE_API = "9adf6fb9433e3a852fbfc40eba607eac81da1431";
+//const GOOGLE_API = "AIzaSyDveBffHbDZ56W7vGOLtE6vlnFUuzoatN0";
 
 class App extends React.Component{
   state={
@@ -17,11 +16,10 @@ class App extends React.Component{
   }
   getWeather = async(e) => {
     e.preventDefault();
-    const city= e.target.elements.city.value;
-    const country= e.target.elements.country.value;
-    const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`)
+    const location= e.target.elements.location.value;
+    const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`)
     const data = await api_call.json();
-    if(city && country)
+    if(location)
     {
       this.setState({
         temperature: data.main.temp,
@@ -50,10 +48,8 @@ class App extends React.Component{
           <div classname="main">
             <div classname="container">
               <div classname="row">
-                <div classname="col-xs-5 title-container">
                   <Title />
                   </div>
-                <div classname="col-xs-7 form-container">
                 <Form getWeather={this.getWeather}/>
                 <Weather temperature ={this.state.temperature}
                          city={this.state.city}
@@ -63,8 +59,6 @@ class App extends React.Component{
                          error={this.state.error}
                 />
 
-                </div>
-              </div>
             </div>
           </div>
         </div>
