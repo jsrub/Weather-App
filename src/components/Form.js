@@ -1,14 +1,12 @@
 import React from "react";
-import {GoogleComponent} from "react-google-location";
-
 
 const Form = props =>(
   <div>
-
-    <form onSubmit={ props.getWeather}>
-      <input type= "text" name="city" id="city" placeholder="City"/>
-      <input type= "text" name="country" placeholder="Country"/>
-      <button>Search</button>
+  <form onSubmit={ props.getWeather}>
+  <div class="form-group">
+      <input type= "text" class="form-control" name="location" id="location" placeholder="Location" />
+  </div>
+      <button type="submit" class="btn btn-primary">Search</button>
     </form>
   </div>
 );
